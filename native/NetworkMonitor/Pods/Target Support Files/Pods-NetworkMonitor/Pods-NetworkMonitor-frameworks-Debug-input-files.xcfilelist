@@ -1,5 +1,0 @@
-${PODS_ROOT}/Target Support Files/Pods-NetworkMonitor/Pods-NetworkMonitor-frameworks.sh
-${BUILT_PRODUCTS_DIR}/VTComponents/VTComponents.framework
-${BUILT_PRODUCTS_DIR}/VTDB/VTDB.framework
-${BUILT_PRODUCTS_DIR}/ZNetworkManager/ZNetworkManager.framework
-${BUILT_PRODUCTS_DIR}/ZSqliteHelper/ZSqliteHelper.framework

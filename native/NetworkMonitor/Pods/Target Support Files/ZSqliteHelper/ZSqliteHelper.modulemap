@@ -1,6 +1,0 @@
-framework module ZSqliteHelper {
-  umbrella header "ZSqliteHelper-umbrella.h"
-
-  export *
-  module * { export * }
-}

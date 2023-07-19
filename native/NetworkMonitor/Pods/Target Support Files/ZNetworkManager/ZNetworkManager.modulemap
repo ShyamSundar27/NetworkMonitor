@@ -1,6 +1,0 @@
-framework module ZNetworkManager {
-  umbrella header "ZNetworkManager-umbrella.h"
-
-  export *
-  module * { export * }
-}
