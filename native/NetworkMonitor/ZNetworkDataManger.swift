@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import VTComponents
 
 
 public protocol ZActivityObserver {
