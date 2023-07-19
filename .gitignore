@@ -1,4 +1,5 @@
 *.xcuserdatad
 *.xcbkptlist
+*.xcuserstate
 .DS_Store
 native/NetworkMonitor/Pods
