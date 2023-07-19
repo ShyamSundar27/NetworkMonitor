@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import VTComponents
+import ZNetworkManager
 
 
 public protocol ZActivityObserver {
@@ -102,13 +104,13 @@ public class ZActivityDataManager: ZTaskInfoObserver {
 //        }
 //    }
 //
-    public func startTracking() {
-        ZNotificationCenter.shared.add(observer: self, for: ZTaskInfoObserver.self)
-    }
-    
-    private func removeTracking() {
-        ZNotificationCenter.shared.remove(observer: self, for: ZTaskInfoObserver.self)
-    }
+//    public func startTracking() {
+//        ZNotificationCenter.shared.add(observer: self, for: ZTaskInfoObserver.self)
+//    }
+//
+//    private func removeTracking() {
+//        ZNotificationCenter.shared.remove(observer: self, for: ZTaskInfoObserver.self)
+//    }
     
 //    private func checkLimit() {
 //        synchronize(callback: { [unowned self] in

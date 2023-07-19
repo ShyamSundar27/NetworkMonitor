@@ -1,0 +1,6 @@
+framework module VTDB {
+  umbrella header "VTDB-umbrella.h"
+
+  export *
+  module * { export * }
+}

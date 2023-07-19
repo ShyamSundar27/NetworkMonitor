@@ -11,12 +11,14 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, '11.0'
 
-  s.source_files = 'native/NetworkMonitor/*.swift'
+  s.source_files = 'native/NetworkMonitor/NetworkMonitor/*.swift'
   
   
   s.frameworks = ['Foundation', 'Cocoa']
   s.swift_version = '4.0'
-  
-  
+  s.dependency 'VTComponents', '~> 2.0.3'
+  s.dependency 'ZNetworkManager', '~> 2.0.0'
+  s.dependency 'ZSqliteHelper', '~> 1.0.18'
+
 end
 

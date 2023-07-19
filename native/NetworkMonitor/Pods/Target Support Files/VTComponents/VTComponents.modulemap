@@ -1,0 +1,6 @@
+framework module VTComponents {
+  umbrella header "VTComponents-umbrella.h"
+
+  export *
+  module * { export * }
+}

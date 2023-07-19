@@ -1,0 +1,32 @@
+{
+  "name": "VTComponents",
+  "version": "2.0.3",
+  "summary": "Data / Domain Layer Components / Utilities common to macOS / iOS",
+  "description": "This library contains helpers, utilities of Data / Domain Layer Components common to macOS / iOS",
+  "homepage": "https://git.csez.zohocorpin.com/vtouchzoho/VTComponents.git",
+  "license": {
+    "type": "MIT",
+    "text": "LICENSE"
+  },
+  "authors": {
+    "rahul.t": "rahul.t@zohocorp.com"
+  },
+  "source": {
+    "git": "https://git.csez.zohocorpin.com/vtouchzoho/VTComponents.git",
+    "tag": "2.0.3"
+  },
+  "platforms": {
+    "osx": "10.11",
+    "ios": "8.0",
+    "watchos": "3.0",
+    "tvos": "9.0"
+  },
+  "source_files": "native/VTComponents/**/*.{swift}",
+  "frameworks": [
+    "Foundation",
+    "CoreGraphics"
+  ],
+  "module_name": "VTComponents",
+  "swift_versions": "4.2",
+  "swift_version": "4.2"
+}

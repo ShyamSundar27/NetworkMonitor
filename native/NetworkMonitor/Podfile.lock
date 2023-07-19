@@ -1,0 +1,34 @@
+PODS:
+  - VTComponents (2.0.3)
+  - VTDB/Lite (0.7.1)
+  - ZNetworkManager (2.0.0):
+    - VTComponents (~> 2.0.0)
+  - ZSqliteHelper (1.0.0):
+    - VTDB/Lite (~> 0.5)
+
+DEPENDENCIES:
+  - VTComponents (from `VTComponents.podspec`)
+  - ZNetworkManager (from `ZNetworkManager.podspec`)
+  - ZSqliteHelper (from `ZSqliteHelper.podspec`)
+
+SPEC REPOS:
+  https://git.csez.zohocorpin.com/vtouchzoho/vtouchpodspecs.git:
+    - VTDB
+
+EXTERNAL SOURCES:
+  VTComponents:
+    :podspec: VTComponents.podspec
+  ZNetworkManager:
+    :podspec: ZNetworkManager.podspec
+  ZSqliteHelper:
+    :podspec: ZSqliteHelper.podspec
+
+SPEC CHECKSUMS:
+  VTComponents: c2de7b8d032b8b46085173927279731f5247c130
+  VTDB: a4ba75dd43315c8561f2cc93f39de34be18a6839
+  ZNetworkManager: 3f7983a589eeac6cf5befc9cd01907aa321f2653
+  ZSqliteHelper: d17c06a630b6771c8ead519c972ca2aabb9b6f15
+
+PODFILE CHECKSUM: 602fb0666282e61a8e722bb84cf9e16c3514456b
+
+COCOAPODS: 1.11.3

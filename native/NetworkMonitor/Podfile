@@ -1,0 +1,10 @@
+source 'https://git.csez.zohocorpin.com/vtouchzoho/vtouchpodspecs.git'
+use_frameworks!
+
+target 'NetworkMonitor' do
+
+  pod 'ZNetworkManager', :podspec => 'ZNetworkManager.podspec'
+  pod 'VTComponents', :podspec => 'VTComponents.podspec'
+  pod 'ZSqliteHelper', :podspec => 'ZSqliteHelper.podspec' 
+ 
+end
