@@ -1,4 +1,8 @@
+deployment_target = '11.0'
+platform :ios, deployment_target
+
 source 'https://git.csez.zohocorpin.com/vtouchzoho/vtouchpodspecs.git'
+
 use_frameworks!
 
 target 'NetworkMonitor' do
@@ -7,4 +11,15 @@ target 'NetworkMonitor' do
   pod 'VTComponents', :podspec => 'VTComponents.podspec'
   pod 'ZSqliteHelper', :podspec => 'ZSqliteHelper.podspec' 
  
+end
+
+
+post_install do |installer|
+    installer.generated_projects.each do |project|
+          project.targets.each do |target|
+              target.build_configurations.each do |config|
+                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = deployment_target
+               end
+          end
+   end
 end

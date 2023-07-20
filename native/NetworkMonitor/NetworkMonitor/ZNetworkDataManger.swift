@@ -40,20 +40,20 @@ public class ZActivityDataManager: ZTaskInfoObserver {
     public static var shared = ZActivityDataManager()
    
     private func add(activity: ZNetworkActivity) {
-//        queue.sync {
+        queue.sync {
             activityMap[activity.id] = activity
             activityIds.append(activity.id)
-//        }
+        }
 //        checkLimit()
     }
     
     private func update(activity: ZNetworkActivity) {
-//        queue.sync {
+        queue.sync {
             activityMap[activity.id] = activity
-//        }
+        }
     }
     private init() {
-//        startTracking()
+        startTracking()
     }
     
     public func getResponseData(id: String) -> Data? {
@@ -65,9 +65,9 @@ public class ZActivityDataManager: ZTaskInfoObserver {
     
     public func getAllActivities() -> [ZNetworkActivity] {
         var activities = [ZNetworkActivity]()
-//        queue.sync {
+        queue.sync {
             activities = activityIds.compactMap({return activityMap[$0]})
-//        }
+        }
         return activities
     }
     
@@ -104,13 +104,13 @@ public class ZActivityDataManager: ZTaskInfoObserver {
 //        }
 //    }
 //
-//    public func startTracking() {
-//        ZNotificationCenter.shared.add(observer: self, for: ZTaskInfoObserver.self)
-//    }
-//
-//    private func removeTracking() {
-//        ZNotificationCenter.shared.remove(observer: self, for: ZTaskInfoObserver.self)
-//    }
+    public func startTracking() {
+        ZNotificationCenter.shared.add(observer: self, for: ZTaskInfoObserver.self)
+    }
+
+    private func removeTracking() {
+        ZNotificationCenter.shared.remove(observer: self, for: ZTaskInfoObserver.self)
+    }
     
 //    private func checkLimit() {
 //        synchronize(callback: { [unowned self] in
@@ -135,10 +135,16 @@ public class ZActivityDataManager: ZTaskInfoObserver {
     public func added(task: ZTaskInfo) {
         let activity = convert(task: task)
         add(activity: activity)
+        ZNotificationCenter.shared.notify(onMainThread: true, ZActivityObserver.self) { (observer) in
+            observer.activityAdded(activity: activity)
+        }
     }
     
     public func updated(task: ZTaskInfo) {
         update(activity: convert(task: task))
+        ZNotificationCenter.shared.notify(onMainThread: true, ZActivityObserver.self) { (observer) in
+            observer.activityUpdated(activity: self.convert(task: task))
+        }
     }
     
     public func ended(task: ZTaskInfo) {
@@ -393,8 +399,12 @@ public class NetworkCallListVC : UIViewController, UITableViewDelegate, UITableV
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: StationDetailsTableViewCell.identifier, for: indexPath) as! StationDetailsTableViewCell
-            let item = activityItems[indexPath.row]
-            cell.setLabelValues(stationNameAndCode: getActivityStatus(activity: item), arrTime: item.request?.url?.absoluteString ?? " Nothing ", deptTime: "\(item.totalTimeTaken)", runningDay: item.id, dist: "\(item.startTime)")
+            let item = activityItems[indexPath.row - 1]
+            let originalString = item.request?.url?.absoluteString ?? " Nothing "
+            let startIndex = originalString.index(originalString.startIndex, offsetBy: 8) // The starting index
+            let endIndex = originalString.index(originalString.startIndex, offsetBy: 20) // The ending index (exclusive)
+            let filteredSubstring = originalString[startIndex..<endIndex]
+            cell.setLabelValues(stationNameAndCode: getActivityStatus(activity: item) ?? "", arrTime: String(filteredSubstring), deptTime: "\(String(describing: item.totalTimeTaken))", runningDay: item.id, dist: "\(String(describing: item.startTime))")
             cell.selectionStyle = .none
             return cell
         }
@@ -539,13 +549,13 @@ class StationDetailsTableViewCell: UITableViewCell {
         constraints.append(stationNameAndCodeLabel.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 10))
         
         constraints.append(stationNameAndCodeLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor,constant: 20))
-        constraints.append(stationNameAndCodeLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor,multiplier: 0.4))
+        constraints.append(stationNameAndCodeLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor,multiplier: 0.13))
         
         arrTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         constraints.append(arrTimeLabel.topAnchor.constraint(equalTo: stationNameAndCodeLabel.topAnchor))
 //        constraints.append(arrTimeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -5))
         constraints.append(arrTimeLabel.leftAnchor.constraint(equalTo: stationNameAndCodeLabel.rightAnchor,constant: 10))
-        constraints.append(arrTimeLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor,multiplier: 0.13))
+        constraints.append(arrTimeLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor,multiplier: 0.4))
         
         depTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         constraints.append(depTimeLabel.topAnchor.constraint(equalTo: stationNameAndCodeLabel.topAnchor))
