@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.source_files = 'native/NetworkMonitor/NetworkMonitor/*.swift'
   
   
-  s.frameworks = ['Foundation', 'Cocoa']
+  s.frameworks = ['Foundation']
   s.swift_version = '4.0'
   s.dependency 'VTComponents', '~> 2.0.3'
   s.dependency 'ZNetworkManager', '~> 2.0.0'
